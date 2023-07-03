@@ -4,6 +4,7 @@ import { ComunicadoService } from '../../services/comunicado.service';
 import { PatternPipe } from '../../pipes/pattern.pipe';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-comunicados-list',
@@ -24,7 +25,11 @@ export class ComunicadosListComponent {
     lte:[null],
   })
 
-  constructor (private comunicadosService: ComunicadoService, private router: Router, private fb:FormBuilder) { }
+  constructor (
+    private comunicadosService: ComunicadoService, 
+    private router: Router, 
+    private fb:FormBuilder,
+    private _snackbar:MatSnackBar) { }
 
   ngOnInit() {
     this.comunicadosService.getComunicados().subscribe({
@@ -36,6 +41,11 @@ export class ComunicadosListComponent {
       },
       error: (e) => console.warn(e.error)
     })
+
+    if(history.state.notify){
+      this._snackbar.open(history.state.notify, undefined,{duration: 1500})
+      delete(history.state.nofify)
+    }
    
   }
 
