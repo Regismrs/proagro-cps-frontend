@@ -44,13 +44,11 @@ export class ComunicadoService {
 
   getComunicadosFiltroDtColheita(gte: string = '1900-01-01', lte: string = '9999-12-31') {
     const url = `${this.apiUrl}comunicados/?data_colheita__gte=${gte}&data_colheita__lte=${lte}`
-    console.warn("URL: " + url)
     return this.http.get<any>(url, this.httpOptions)
   }
 
   getComunicadosFiltroDtCadastro(gte: string = '1900-01-01', lte: string = '9999-12-31') {
     const url = `${this.apiUrl}comunicados/?data_cadastro__gte=${gte}&data_cadastro__lte=${lte}`
-    console.warn("URL: " + url)
     return this.http.get<any>(url, this.httpOptions)
   }
 
