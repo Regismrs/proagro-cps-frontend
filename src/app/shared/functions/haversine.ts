@@ -7,5 +7,5 @@ export function haversine(latA:number, lonA:number, latB:number, lonB:number):nu
 }
 
 export function distanceToString(d:number):string {
-    return (d >= 1)? d.toFixed(3) + ' km' : ( d >= 0.010 )? (d * 1000).toFixed(0) + ' mts' : 'Mesmo local'
+    return (d >= 1)? d.toFixed(3).replace(".", ",") + ' km' : ( d >= 0.010 )? (d * 1000).toFixed(0) + ' mts' : 'Mesmo local'
 }

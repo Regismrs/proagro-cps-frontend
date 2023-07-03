@@ -54,7 +54,7 @@
                 Atenção: Existem registros de <b>{{eventosDivirgentes.length}} eventos</b> 
                 diferentes no mesmo dia em uma distância inferior a 10 km.
                 <ul>
-                    <li *ngFor="let com of eventosDivirgentes"><b>Cód: {{com.id}}</b> - {{com.evento_descr}} ~ {{com.distancia}}</li>
+                    <li *ngFor="let com of eventosDivirgentes"><small><b>Doc#{{com.id}}</b>, {{com.evento_descr}} ~ {{com.distancia}}</small></li>
                 </ul>
             </div>
         </div>
@@ -106,7 +106,7 @@
         <div class="flex space-between">
             <button mat-raised-button routerLink="comunicados/" color="accent">Sair sem salvar</button>
             <button mat-raised-button color="primary"
-                [disabled]="comunicadoForm.invalid || !cansubmit"
+                [disabled]="comunicadoForm.invalid && !cansubmit"
                 type="button"
                 (click)="onSubmit()">SALVAR
             </button>
