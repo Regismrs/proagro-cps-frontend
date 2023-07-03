@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<div class="flex center">
+    <div class="mat-elevation-z8 w60 bg-white p2">
+
+        <h2>Documento código <b>{{comunicado.id}}</b> criado em {{comunicado.inserted_at | date: 'dd/MM/yyyy'}}.</h2>
+        <hr>
+
+        <div class="destaque">
+            <h2>
+                Comunicado de perda feito por <b>{{comunicado.nome}}</b>, CPF 
+            <b>{{comunicado.cpf | pattern: '###.###.###-##'}}</b>, sendo <b>{{comunicado.evento_descr}}</b>
+            o motivo apontado como causador do prejuízo em sua lavoura cuja data da colheita ficou registrada
+            como <b>{{comunicado.lavoura_data_colheita | date: 'dd/MM/yyyy'}}</b>. Lembre-se que a exclusão do 
+            registro no sistema é um processo irreversível sendo os dados eliminados de forma definitiva.
+            </h2>
+        </div>
+
+        <h1 class="flex center">Tem certeza que deseja excluir esse documento?</h1>
+
+        <div class="flex space-around">
+            <button mat-raised-button (click)="cancelaExclusao()">Não</button>
+            <button mat-raised-button (click)="confirmaExclusao()">Sim</button>
+        </div>
+    </div>
+</div>

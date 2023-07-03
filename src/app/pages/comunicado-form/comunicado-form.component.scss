@@ -1,0 +1,28 @@
+h2 {
+    margin: 2px auto 2px;
+    color: #efefef;
+    padding: .2em 1em;
+    color: var(--cor-primary);
+    border-bottom: 3px solid mediumseagreen;
+}
+form {
+    background: #fff;
+}
+
+.flex > * {
+    box-sizing: border-box;
+    margin: .5em;
+}
+.f20 { flex: 1 1 25%; }
+.f2 { flex: 1 0 50%; }
+.f3 { flex: 1 1 60%; }
+.f4 { flex: 1 1 100%;}
+.container {
+    background: #fff;
+    padding: 2em;
+}
+.danger {
+    background: #ff9999;
+    padding: 2em;
+    color: #cc3333;
+}

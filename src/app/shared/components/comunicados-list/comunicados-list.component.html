@@ -1,0 +1,79 @@
+<div class="container">
+  <div style="padding:1em 1em 0; background: #efefef" class="flex">
+    <mat-form-field appearance="outline">
+      <mat-label>Filtrar</mat-label>
+      <input matInput placeholder="Procurar na tabela" #cpf_search (keyup)="applyFilter(cpf_search.value)">
+    </mat-form-field>
+    <form [formGroup]="buscaForm" class="flex end">
+      <mat-form-field appearance="outline">
+        <mat-label>Pesquisar por data</mat-label>
+        <mat-select matInput formControlName="campo">
+          <mat-option value="dtcolheita">Data Colheita</mat-option>
+          <mat-option value="dtcadastro">Data Cadastro</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Data Maior que:</mat-label>
+        <input matInput formControlName="gte" placeholder="--/--/----" [matDatepicker]="igte">
+        <mat-datepicker #igte></mat-datepicker>  
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Data Menor que:</mat-label>
+        <input matInput formControlName="lte" placeholder="- -/- -/- - - -" [matDatepicker]="ilte">
+        <mat-datepicker #ilte></mat-datepicker>  
+      </mat-form-field>
+        <button type="button" mat-raised-button color="primary" (click)="buscarPorData()">Buscar<mat-icon>search</mat-icon></button>
+    </form>
+
+  </div>
+
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let comunicado"> {{comunicado.id}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="nome">
+        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let comunicado"> {{comunicado.nome}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="cpf"> 
+        <mat-header-cell *matHeaderCellDef> CPF </mat-header-cell>
+        <mat-cell *matCellDef="let comunicado" style="white-space: nowrap;"> {{ comunicado.cpf | pattern: "###.###.###-##" }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="evento_descr">
+        <mat-header-cell *matHeaderCellDef> Motivo </mat-header-cell>
+        <mat-cell *matCellDef="let comunicado"> {{comunicado.evento_descr | titlecase}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lavoura_data_colheita">
+        <mat-header-cell *matHeaderCellDef> Data Colheita </mat-header-cell>
+        <mat-cell *matCellDef="let comunicado"> {{comunicado.lavoura_data_colheita | date: 'dd/MM/Y'}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="inserted_at">
+        <mat-header-cell *matHeaderCellDef> Data cad. </mat-header-cell>
+        <mat-cell *matCellDef="let comunicado"> {{comunicado.inserted_at | date: 'dd/MM/Y'}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef > Detalhes </mat-header-cell>
+        <mat-cell *matCellDef="let comunicado" >
+          <a (click)="edit(comunicado.id)">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a (click)="delete(comunicado.id)" style="color:#c00">
+            <mat-icon>delete-icon</mat-icon>
+          </a>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayColumns;"></mat-row>
+    </mat-table>
+  
+</div>
+
