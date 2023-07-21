@@ -1,5 +1,5 @@
 <div class="container">
-  <div style="padding:1em 1em 0; background: #efefef" class="flex">
+  <div class="flex bg-white" style="padding:1em 1em 0">
     <mat-form-field appearance="outline">
       <mat-label>Filtrar</mat-label>
       <input matInput placeholder="Procurar na tabela" #cpf_search (keyup)="applyFilter(cpf_search.value)">
@@ -8,16 +8,17 @@
       <mat-form-field appearance="outline">
         <mat-label>Pesquisar por data</mat-label>
         <mat-select matInput formControlName="campo">
+          <mat-option value="">Todos</mat-option>
           <mat-option value="dtcolheita">Data Colheita</mat-option>
           <mat-option value="dtcadastro">Data Cadastro</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" *ngIf="buscaForm.controls['campo'].value !== ''">
         <mat-label>Data Maior que:</mat-label>
         <input matInput formControlName="gte" placeholder="--/--/----" [matDatepicker]="igte">
         <mat-datepicker #igte></mat-datepicker>  
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" *ngIf="buscaForm.controls['campo'].value !== ''">
         <mat-label>Data Menor que:</mat-label>
         <input matInput formControlName="lte" placeholder="- -/- -/- - - -" [matDatepicker]="ilte">
         <mat-datepicker #ilte></mat-datepicker>  
@@ -41,7 +42,7 @@
   
       <ng-container matColumnDef="cpf"> 
         <mat-header-cell *matHeaderCellDef> CPF </mat-header-cell>
-        <mat-cell *matCellDef="let comunicado" style="white-space: nowrap;"> {{ comunicado.cpf | pattern: "###.###.###-##" }} </mat-cell>
+        <mat-cell *matCellDef="let comunicado" class="text-nowrap"> {{ comunicado.cpf | pattern: "###.###.###-##" }} </mat-cell>
       </ng-container>
   
       <ng-container matColumnDef="evento_descr">
@@ -65,7 +66,7 @@
           <a (click)="edit(comunicado.id)">
             <mat-icon>edit</mat-icon>
           </a>
-          <a (click)="delete(comunicado.id)" style="color:#c00">
+          <a (click)="delete(comunicado.id)" class="text-erro">
             <mat-icon>delete-icon</mat-icon>
           </a>
         </mat-cell>

@@ -83,3 +83,21 @@ form,
 .bg-white {
     background: #efefef;
 }
+
+.text-erro {
+    color: var(--cor-erro);
+}
+
+.text-nowrap {
+    white-space: nowrap;
+}
+
+.mat-mdc-snack-bar-container {    
+    //--mdc-snackbar-container-color: black;
+    --mdc-snackbar-supporting-text-color: #ccc;
+    --mat-mdc-snack-bar-button-color: var(--cor-erro);
+}
+
+.snack-bar-notify-error {
+    --mdc-snackbar-container-color: #111;
+    --mdc-snackbar-supporting-text-color: rgb(238, 177, 177);}

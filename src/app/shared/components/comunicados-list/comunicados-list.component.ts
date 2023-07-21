@@ -5,6 +5,7 @@ import { PatternPipe } from '../../pipes/pattern.pipe';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-comunicados-list',
@@ -39,7 +40,10 @@ export class ComunicadosListComponent {
         this.dataSource = new MatTableDataSource( this.comunicados )
         console.info(res)
       },
-      error: (e) => console.warn(e.error)
+      error: (e) => {
+        console.warn(e)
+        this.notifyErrors(e)
+      }
     })
 
     if(history.state.notify){
@@ -92,5 +96,9 @@ export class ComunicadosListComponent {
 
   delete(id:any) {
     this.router.navigate(['comunicado/delete'], {state: {id: id}})
+  }
+
+  notifyErrors(e:HttpErrorResponse):void {
+    this._snackbar.open(`Erro ${e.status} - ${e.statusText}: ${e.error.detail}`, "close", {panelClass: 'snack-bar-notify-error'})
   }
 }

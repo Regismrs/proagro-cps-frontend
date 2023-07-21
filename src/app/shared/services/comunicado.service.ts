@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class ComunicadoService {
 
-  private apiUrl: string = 'http://localhost:8000/'
-  private token: string = 'cfe31cb1e210df9941fd98fff94ecfaf284e09ca'
+  //private apiUrl: string = 'http://localhost:8000/'
+  private apiUrl: string = 'http://34.173.70.31:8000/'
+  private token: string = 'aaea822555dbf8cd53e2b807d00ffba729743ee'
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
