@@ -5,30 +5,7 @@
       <input matInput placeholder="Procurar na tabela" #cpf_search (keyup)="applyFilter(cpf_search.value)">
     </mat-form-field>
 
-    <form [formGroup]="buscaForm" class="flex end">
-      <mat-form-field appearance="outline">
-        <mat-label>Pesquisar por data</mat-label>
-        <mat-select matInput formControlName="campo">
-          <mat-option value="">Todos</mat-option>
-          <mat-option value="dtcolheita">Data Colheita</mat-option>
-          <mat-option value="dtcadastro">Data Cadastro</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" *ngIf="buscaForm.controls['campo'].value !== ''">
-        <mat-label>Data Maior que:</mat-label>
-        <input matInput formControlName="gte" placeholder="--/--/----" [matDatepicker]="igte">
-        <mat-datepicker #igte></mat-datepicker>  
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" *ngIf="buscaForm.controls['campo'].value !== ''">
-        <mat-label>Data Menor que:</mat-label>
-        <input matInput formControlName="lte" placeholder="--/--/----" [matDatepicker]="ilte">
-        <mat-datepicker #ilte></mat-datepicker>  
-      </mat-form-field>
-
-      <button type="button" mat-raised-button color="primary" (click)="buscarComunicadosPorData()">Buscar<mat-icon>search</mat-icon></button>
-    </form>
+    <app-comunicados-filtro></app-comunicados-filtro>
 
   </div>
 

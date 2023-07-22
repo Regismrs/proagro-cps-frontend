@@ -11,10 +11,12 @@ import { HomeComponent } from './home/home.component';
 import { ComunicadoDeleteComponent } from './comunicado-delete/comunicado-delete.component';
 import { ComunicadoFormComponent } from './comunicado-form/comunicado-form.component';
 import { ComunicadosListComponent } from './comunicados-list/comunicados-list.component';
+import { ComunicadosFiltroComponent } from './comunicados-list/comunicados-filtro/comunicados-filtro.component';
 
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { Moment } from 'moment';
+
 
 const MY_DATE_FORMAT = {
   parse: {
@@ -35,7 +37,8 @@ const MY_DATE_FORMAT = {
     ComunicadosListComponent,
     ComunicadoFormComponent,
     PatternPipe,
-    ComunicadoDeleteComponent
+    ComunicadoDeleteComponent,
+    ComunicadosFiltroComponent
   ],
   imports: [
     CommonModule,

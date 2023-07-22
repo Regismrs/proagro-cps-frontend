@@ -1,0 +1,24 @@
+<form class="flex end">
+    <mat-form-field appearance="outline">
+      <mat-label>Pesquisar por data</mat-label>
+      <mat-select matInput [(ngModel)]="filtro" name="filtro">
+        <mat-option value="">Todos</mat-option>
+        <mat-option value="dtcolheita">Data Colheita</mat-option>
+        <mat-option value="dtcadastro">Data Cadastro</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="filtro !== ''">
+      <mat-label>Data Maior que:</mat-label>
+      <input matInput [(ngModel)]="dataMinima" placeholder="--/--/----" [matDatepicker]="igte" name="dataMinima">
+      <mat-datepicker #igte></mat-datepicker>  
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="filtro !== ''">
+      <mat-label>Data Menor que:</mat-label>
+      <input matInput [(ngModel)]="dataMaxima" placeholder="--/--/----" [matDatepicker]="ilte" name="dataMaxima">
+      <mat-datepicker #ilte></mat-datepicker>  
+    </mat-form-field>
+
+    <button type="button" mat-raised-button color="primary" (click)="realizarBuscaFiltrada()">Buscar<mat-icon>search</mat-icon></button>
+</form>
