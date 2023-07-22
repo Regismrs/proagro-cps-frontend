@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { ComunicadoService } from 'src/app/shared/services/comunicado.service';
 
 @Component({
-  selector: 'app-comunicado-form-delete',
-  templateUrl: './comunicado-form-delete.component.html',
-  styleUrls: ['./comunicado-form-delete.component.scss']
+  selector: 'app-comunicado-delete',
+  templateUrl: './comunicado-delete.component.html',
+  styleUrls: ['./comunicado-delete.component.scss']
 })
-export class ComunicadoFormDeleteComponent {
+export class ComunicadoDeleteComponent {
 
   public comunicado: any
 

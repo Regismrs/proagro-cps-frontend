@@ -6,11 +6,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/modules/material/material.module';
 import { PatternPipe } from '../shared/pipes/pattern.pipe';
 import { HeaderComponent } from '../shared/components/header/header.component';
-import { ComunicadosListComponent } from '../shared/components/comunicados-list/comunicados-list.component';
 //pages
 import { HomeComponent } from './home/home.component';
-import { ComunicadoFormDeleteComponent } from './comunicado-form-delete/comunicado-form-delete.component';
+import { ComunicadoDeleteComponent } from './comunicado-delete/comunicado-delete.component';
 import { ComunicadoFormComponent } from './comunicado-form/comunicado-form.component';
+import { ComunicadosListComponent } from './comunicados-list/comunicados-list.component';
 
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -35,7 +35,7 @@ const MY_DATE_FORMAT = {
     ComunicadosListComponent,
     ComunicadoFormComponent,
     PatternPipe,
-    ComunicadoFormDeleteComponent
+    ComunicadoDeleteComponent
   ],
   imports: [
     CommonModule,

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ComunicadoService } from '../../services/comunicado.service';
-import { PatternPipe } from '../../pipes/pattern.pipe';
+import { ComunicadoService } from '../../shared/services/comunicado.service';
+import { PatternPipe } from '../../shared/pipes/pattern.pipe';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-comunicados-list',
@@ -57,12 +58,9 @@ export class ComunicadosListComponent {
     this.dataSource.filter = value.trim().toLowerCase()
   }
 
-  buscarPorData() {
+  buscarComunicadosPorData(){
     console.log(this.buscaForm.value)
-    if (this.buscaForm.controls['campo'].value == '' ) {
-      window.alert('Escolha entre data de colheita e data de cadastro!')
-      return false
-    }
+
     if (this.buscaForm.controls['gte'].value == '' && this.buscaForm.controls['lte'].value == '') {
       window.alert('Escolha ao menos uma data maior e/ou menor')
       return false

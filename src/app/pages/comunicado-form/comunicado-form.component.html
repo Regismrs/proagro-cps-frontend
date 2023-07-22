@@ -13,7 +13,7 @@
         <div class="flex wrap">
             <mat-form-field>
                 <mat-label>CPF</mat-label>
-                <input matInput formControlName="cpf" maxlength="11">
+                <input matInput type="text" formControlName="cpf" maxlength="11" aria-label="cpf">
                 <mat-error *ngIf="comunicadoForm.controls.cpf.invalid">
                     <span *ngIf="comunicadoForm.controls.cpf.errors.required">CPF é obrigatório</span>
                     <span *ngIf="comunicadoForm.controls.cpf.errors.length">CPF deve ter 11 digitos</span>
@@ -23,13 +23,13 @@
 
             <mat-form-field class="f3">
                 <mat-label>Nome Completo</mat-label>
-                <input matInput formControlName="nome">
+                <input matInput formControlName="nome" aria-label="nome completo">
                 <mat-error *ngIf="comunicadoForm.controls.nome.invalid">Informe nome e sobrenome válidos</mat-error>
             </mat-form-field>
 
             <mat-form-field class="f4">
                 <mat-label>Email</mat-label>
-                <input matInput formControlName="email">
+                <input matInput formControlName="email" aria-label="email">
                 <mat-error *ngIf="comunicadoForm.controls.email.invalid">Informe um email válido.</mat-error>
             </mat-form-field>
         </div>
@@ -71,7 +71,7 @@
 
             <mat-form-field>
                 <mat-label>Latitude</mat-label>
-                <input matInput formControlName="lavoura_lat" maxlength="10" (blur)="getMesmaDataOutroMotivo()">
+                <input matInput formControlName="lavoura_lat" maxlength="10" (blur)="getMesmaDataOutroMotivo()" aria-label="lavoura latitude">
                 <mat-error *ngIf="comunicadoForm.controls.lavoura_lat.invalid">
                     <span *ngIf="comunicadoForm.controls.lavoura_lat.errors.required">Latitude da lavoura é obrigatória</span>
                     <span *ngIf="comunicadoForm.controls.lavoura_lat.errors.min || comunicadoForm.controls.lavoura_lat.errors.max">
@@ -81,7 +81,7 @@
             
             <mat-form-field>
                 <mat-label>Longitude</mat-label>
-                <input matInput formControlName="lavoura_lon" maxlength="11" (blur)="getMesmaDataOutroMotivo()">
+                <input matInput formControlName="lavoura_lon" maxlength="11" (blur)="getMesmaDataOutroMotivo()" aria-label="lavoura-longitude">
                 <mat-error *ngIf="comunicadoForm.controls.lavoura_lon.invalid">
                     <span *ngIf="comunicadoForm.controls.lavoura_lon.errors.required">Longitude da lavoura é obrigatória</span>
                     <span *ngIf="comunicadoForm.controls.lavoura_lon.errors.min || comunicadoForm.controls.lavoura_lon.errors.max">
