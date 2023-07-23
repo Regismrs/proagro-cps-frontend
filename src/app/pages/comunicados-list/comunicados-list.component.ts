@@ -34,18 +34,7 @@ export class ComunicadosListComponent {
     private _snackbar:MatSnackBar) { }
 
   ngOnInit() {
-    this.comunicadosService.getComunicados().subscribe({
-      next: (res) => {
-        this.comunicados = res.results
-        this.comunicadosCount = res.count
-        this.dataSource = new MatTableDataSource( this.comunicados )
-        console.info(res)
-      },
-      error: (e) => {
-        console.warn(e)
-        this.notifyErrors(e)
-      }
-    })
+    this.buscarComunicados({filtro: ""})
 
     if(history.state.notify){
       this._snackbar.open(history.state.notify, undefined,{duration: 1500})
@@ -58,30 +47,34 @@ export class ComunicadosListComponent {
     this.dataSource.filter = value.trim().toLowerCase()
   }
 
-  buscarComunicadosPorData(){
-    console.log(this.buscaForm.value)
+  buscarComunicados(event:any){
+    let buscaObservable:Observable<any>
 
-    if (this.buscaForm.controls['gte'].value == '' && this.buscaForm.controls['lte'].value == '') {
-      window.alert('Escolha ao menos uma data maior e/ou menor')
-      return false
+    if (event.filtro == "dtcadastro")
+    {
+      buscaObservable = this.comunicadosService.getComunicadosFiltroDtCadastro(event.dataMaxima, event.dataMinima)
+    }
+    else if (event.filtro == "dtcolheita")
+    {
+      buscaObservable = this.comunicadosService.getComunicadosFiltroDtColheita(event.dataMaxima, event.dataMinima)
+    }
+    else
+    {
+      buscaObservable = this.comunicadosService.getComunicados()
     }
 
-    let {campo: filtro, gte, lte} = this.buscaForm.value
-    gte = gte.toISOString()
-    lte = lte.toISOString()
-    if (filtro == 'dtcolheita') {
-      this.comunicadosService.getComunicadosFiltroDtColheita(gte, lte).subscribe({
-        next: r => {
-          this.comunicados = r.results
-          console.log(this.comunicados)
-          this.dataSource.data = [...this.comunicados]
-        },
-        error: e => console.warn(e.error)
-      })
-    } else {
-      this.comunicadosService.getComunicadosFiltroDtCadastro(gte, lte)
-    }
-    return true
+    buscaObservable.subscribe({
+      next: (res) => {
+        this.comunicados = res.results
+        this.comunicadosCount = res.count
+        this.dataSource = new MatTableDataSource( this.comunicados )
+        console.info(res)
+      },
+      error: (e) => {
+        console.warn(e)
+        this.notifyErrors(e)
+      }
+    })
   }
 
   getServerData(event:any) {

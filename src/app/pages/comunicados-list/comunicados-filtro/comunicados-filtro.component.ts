@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-comunicados-filtro',
@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./comunicados-filtro.component.scss']
 })
 export class ComunicadosFiltroComponent {
+  @Output() filtroAlterado:EventEmitter<any> = new EventEmitter<any>()
   public filtro:string
   public dataMinima:Date|null
   public dataMaxima:Date|null
@@ -16,16 +17,16 @@ export class ComunicadosFiltroComponent {
     this.dataMaxima = null
   }
 
-  realizarBuscaFiltrada() {
+  montarFiltro() {
     if (this.filtro != "")
     {
       if (this.dataMinima || this.dataMaxima)
       {
-        console.log(
-          this.filtro,
-          this.converteDataParaString(this.dataMinima, "1900-01-01"),
-          this.converteDataParaString(this.dataMaxima, "2999-12-31")
-        ) 
+        this.filtroAlterado.emit({
+          filtro: this.filtro,
+          dataMinima: this.converteDataParaString(this.dataMinima, "1900-01-01"),
+          dataMaxima: this.converteDataParaString(this.dataMaxima, "2999-12-31")
+        })
       }
       else
       {
@@ -34,7 +35,7 @@ export class ComunicadosFiltroComponent {
     }
     else
     {
-      console.log("Todos", null, null)
+      this.filtroAlterado.emit({filtro: "todos"})
     }
   }
 
