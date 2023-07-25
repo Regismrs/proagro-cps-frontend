@@ -5,7 +5,7 @@
       <input matInput placeholder="Procurar na tabela" #cpf_search (keyup)="applyFilter(cpf_search.value)">
     </mat-form-field>
 
-    <app-comunicados-filtro (filtroAlterado)="buscarComunicados($event)"></app-comunicados-filtro>
+    <app-comunicados-filtro (filtroAlterado)="buscarComunicados($event)" [isLoading]="isLoading"></app-comunicados-filtro>
 
   </div>
 

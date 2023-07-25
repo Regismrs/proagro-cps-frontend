@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-comunicados-filtro',
@@ -6,6 +6,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./comunicados-filtro.component.scss']
 })
 export class ComunicadosFiltroComponent {
+  @Input() isLoading:boolean = false
   @Output() filtroAlterado:EventEmitter<any> = new EventEmitter<any>()
   public filtro:string
   public dataMinima:Date|null

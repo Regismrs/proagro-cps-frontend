@@ -21,11 +21,7 @@ export class ComunicadosListComponent {
   public displayColumns = ['id','nome','cpf', 'evento_descr', 'lavoura_data_colheita', 'inserted_at', 'actions']
   public dataSource:any
 
-  public buscaForm: FormGroup = this.fb.group({
-    campo: [''],
-    gte: [null],
-    lte:[null],
-  })
+  public isLoading:boolean = false
 
   constructor (
     private comunicadosService: ComunicadoService, 
@@ -63,16 +59,19 @@ export class ComunicadosListComponent {
       buscaObservable = this.comunicadosService.getComunicados()
     }
 
+    this.isLoading = true
     buscaObservable.subscribe({
       next: (res) => {
         this.comunicados = res.results
         this.comunicadosCount = res.count
         this.dataSource = new MatTableDataSource( this.comunicados )
         console.info(res)
+        this.isLoading = false
       },
       error: (e) => {
         console.warn(e)
         this.notifyErrors(e)
+        this.isLoading = false
       }
     })
   }
