@@ -24,7 +24,7 @@
       mat-raised-button color="primary" 
       (click)="montarFiltro()"
       class="buscar-button"
-      disabled="{{isLoading}}">
+      [disabled]="isLoading">
         Buscar
         <mat-icon>search</mat-icon>
     </button>
