@@ -31,8 +31,8 @@ export class ComunicadoService {
     return this.http.get<any>(`${this.API_URL}/comunicado/${id}`, this.httpOptions)
   }
 
-  getComunicados(): Observable<any> {
-    return this.http.get<any>(`${this.API_URL}/comunicados/`, this.httpOptions)
+  getComunicados(limit:number, offset:number): Observable<any> {
+    return this.http.get<any>(`${this.API_URL}/comunicados/?limit=${limit}&offset=${offset}`, this.httpOptions)
   }
 
   getComunicadosDivergentes(lavoura_data_colheita: Date, evento: number, id: number = 0): Observable<any> {
@@ -43,13 +43,14 @@ export class ComunicadoService {
       this.httpOptions)
   }
 
-  getComunicadosFiltroDtColheita(gte: string, lte: string) {
-    const url = `${this.API_URL}/comunicados/?data_colheita__gte=${gte}&data_colheita__lte=${lte}`
+  getComunicadosFiltroDtColheita(gte: string, lte: string, limit: number, offset: number) {
+    const url = `${this.API_URL}/comunicados/?data_colheita__gte=${gte}&data_colheita__lte=${lte}&limit=${limit}&offset=${offset}`
     return this.http.get<any>(url, this.httpOptions)
   }
 
-  getComunicadosFiltroDtCadastro(gte: string, lte: string) {
-    const url = `${this.API_URL}/comunicados/?data_cadastro__gte=${gte}&data_cadastro__lte=${lte}`
+  getComunicadosFiltroDtCadastro(gte: string, lte: string, limit: number, offset: number) {
+    const url = `${this.API_URL}/comunicados/?data_cadastro__gte=${gte}&data_cadastro__lte=${lte}&limit=${limit}&offset=${offset}`
+    console.log(url)
     return this.http.get<any>(url, this.httpOptions)
   }
 

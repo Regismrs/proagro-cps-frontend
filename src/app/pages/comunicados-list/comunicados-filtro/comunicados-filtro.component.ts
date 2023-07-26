@@ -26,7 +26,8 @@ export class ComunicadosFiltroComponent {
         this.filtroAlterado.emit({
           filtro: this.filtro,
           dataMinima: this.converteDataParaString(this.dataMinima, "1900-01-01"),
-          dataMaxima: this.converteDataParaString(this.dataMaxima, "2999-12-31")
+          dataMaxima: this.converteDataParaString(this.dataMaxima, "2999-12-31"),
+          offset: 0
         })
       }
       else

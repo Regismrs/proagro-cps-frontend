@@ -22,11 +22,17 @@ export class ComunicadosListComponent {
   public dataSource:any
 
   public isLoading:boolean = false
+  private filtro:{filtro:string, dataMinima:string, dataMaxima:string, limit:number, offset:number} = {
+    dataMinima: "1900-01-01",
+    dataMaxima: "2999-12-31",
+    filtro: '',
+    limit: 5,
+    offset: 0
+  }
 
   constructor (
     private comunicadosService: ComunicadoService, 
     private router: Router, 
-    private fb:FormBuilder,
     private _snackbar:MatSnackBar) { }
 
   ngOnInit() {
@@ -45,21 +51,38 @@ export class ComunicadosListComponent {
 
   buscarComunicados(event:any){
     let buscaObservable:Observable<any>
+    this.isLoading = true
 
-    if (event.filtro == "dtcadastro")
+    this.filtro = {...this.filtro, ...event}
+
+    if (this.filtro.filtro == "dtcadastro")
     {
-      buscaObservable = this.comunicadosService.getComunicadosFiltroDtCadastro(event.dataMinima, event.dataMaxima)
+      buscaObservable = this.comunicadosService
+        .getComunicadosFiltroDtCadastro(
+          this.filtro.dataMinima, 
+          this.filtro.dataMaxima, 
+          this.filtro.limit, 
+          this.filtro.offset
+        )
     }
-    else if (event.filtro == "dtcolheita")
+    else if (this.filtro.filtro == "dtcolheita")
     {
-      buscaObservable = this.comunicadosService.getComunicadosFiltroDtColheita(event.dataMinima, event.dataMaxima)
+      buscaObservable = this.comunicadosService
+        .getComunicadosFiltroDtColheita(
+          this.filtro.dataMinima, 
+          this.filtro.dataMaxima, 
+          this.filtro.limit, 
+          this.filtro.offset
+        )
     }
     else
     {
-      buscaObservable = this.comunicadosService.getComunicados()
+      buscaObservable = this.comunicadosService.getComunicados(
+        this.filtro.limit, 
+        this.filtro.offset
+      )
     }
 
-    this.isLoading = true
     buscaObservable.subscribe({
       next: (res) => {
         this.comunicados = res.results
@@ -74,10 +97,6 @@ export class ComunicadosListComponent {
         this.isLoading = false
       }
     })
-  }
-
-  getServerData(event:any) {
-    console.info(event)
   }
 
   edit(id:any){

@@ -59,7 +59,9 @@
     
     <div>...</div>
 
-    <app-comunicados-paginacao></app-comunicados-paginacao>
+    <app-comunicados-paginacao 
+      [length]="comunicadosCount"
+      (pageChange)="buscarComunicados($event)"></app-comunicados-paginacao>
     
 </div>
 
