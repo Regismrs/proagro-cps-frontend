@@ -48,11 +48,11 @@ export class ComunicadosListComponent {
 
     if (event.filtro == "dtcadastro")
     {
-      buscaObservable = this.comunicadosService.getComunicadosFiltroDtCadastro(event.dataMaxima, event.dataMinima)
+      buscaObservable = this.comunicadosService.getComunicadosFiltroDtCadastro(event.dataMinima, event.dataMaxima)
     }
     else if (event.filtro == "dtcolheita")
     {
-      buscaObservable = this.comunicadosService.getComunicadosFiltroDtColheita(event.dataMaxima, event.dataMinima)
+      buscaObservable = this.comunicadosService.getComunicadosFiltroDtColheita(event.dataMinima, event.dataMaxima)
     }
     else
     {
