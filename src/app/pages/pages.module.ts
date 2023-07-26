@@ -16,6 +16,7 @@ import { ComunicadosFiltroComponent } from './comunicados-list/comunicados-filtr
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { Moment } from 'moment';
+import { ComunicadosPaginacaoComponent } from './comunicados-list/comunicados-paginacao/comunicados-paginacao.component';
 
 
 const MY_DATE_FORMAT = {
@@ -38,7 +39,8 @@ const MY_DATE_FORMAT = {
     ComunicadoFormComponent,
     PatternPipe,
     ComunicadoDeleteComponent,
-    ComunicadosFiltroComponent
+    ComunicadosFiltroComponent,
+    ComunicadosPaginacaoComponent
   ],
   imports: [
     CommonModule,
