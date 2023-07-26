@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="flex center">
-    <div class="mat-elevation-z8 w60 bg-white p2">
+    <div class="mat-elevation-z8 w60 bg-white p2" *ngIf="comunicado != null">
 
         <h2>Documento código <b>{{comunicado.id}}</b> criado em {{comunicado.inserted_at | date: 'dd/MM/yyyy'}}.</h2>
         <hr>
