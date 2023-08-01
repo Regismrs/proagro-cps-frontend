@@ -8,7 +8,7 @@ h2 {
 }
 
 form {
-    background: #fff;
+    background: var(--cor-branco);
 }
 
 .flex>* {
@@ -33,7 +33,7 @@ form {
 }
 
 .container {
-    background: #fff;
+    background: var(--cor-branco);
     padding: 2em;
 }
 
