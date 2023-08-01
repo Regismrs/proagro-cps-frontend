@@ -2,60 +2,107 @@
 
 <div class="flex center">
     <form [formGroup]="comunicadoForm" (ngSubmit)="onSubmit()" class="mat-elevation-z8 container">
-        
-        <h1 class="flex end" *ngIf="!comunicadoForm.get('id')?.value;else updateMsg">Novo Comunicado</h1>
+
+        <h1 class="flex end" *ngIf="!comunicadoForm.get('id')?.value;else updateMsg">
+            Novo Comunicado
+        </h1>
+
         <ng-template #updateMsg>
-            <h1 class="flex end">Alterando Comunicado {{comunicadoForm.get('id')?.value}}</h1>
+            <h1 class="flex end">
+                Alterando Comunicado {{comunicadoForm.get('id')?.value}}
+            </h1>
         </ng-template>
-        
-        
+
+
         <h2>Produtor Rural</h2>
+        
         <div class="flex wrap">
             <mat-form-field>
+
                 <mat-label>CPF</mat-label>
-                <input matInput type="text" formControlName="cpf" maxlength="11" aria-label="cpf">
+
+                <input matInput type="text"
+                    formControlName="cpf" 
+                    maxlength="11" 
+                    aria-label="cpf">
+
                 <mat-error *ngIf="comunicadoForm.controls.cpf.invalid">
-                    <span *ngIf="comunicadoForm.controls.cpf.errors.required">CPF é obrigatório</span>
-                    <span *ngIf="comunicadoForm.controls.cpf.errors.length">CPF deve ter 11 digitos</span>
-                    <span *ngIf="comunicadoForm.controls.cpf.errors.cpf">Informe um CPF válido</span>
+
+                    <span *ngIf="comunicadoForm.controls.cpf.errors.required">
+                        CPF é obrigatório
+                    </span>
+                    <span *ngIf="comunicadoForm.controls.cpf.errors.length">
+                        CPF deve ter 11 digitos
+                    </span>
+                    <span *ngIf="comunicadoForm.controls.cpf.errors.cpf">
+                        Informe um CPF válido
+                    </span>
+
                 </mat-error>
+            
             </mat-form-field>
-
             <mat-form-field class="f3">
-                <mat-label>Nome Completo</mat-label>
-                <input matInput formControlName="nome" aria-label="nome completo">
-                <mat-error *ngIf="comunicadoForm.controls.nome.invalid">Informe nome e sobrenome válidos</mat-error>
-            </mat-form-field>
 
+                <mat-label>Nome Completo</mat-label>
+
+                <input matInput
+                    formControlName="nome"
+                    aria-label="nome completo">
+
+                <mat-error *ngIf="comunicadoForm.controls.nome.invalid">
+                    Informe nome e sobrenome válidos
+                </mat-error>
+            
+            </mat-form-field>
             <mat-form-field class="f4">
+
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" aria-label="email">
                 <mat-error *ngIf="comunicadoForm.controls.email.invalid">Informe um email válido.</mat-error>
+
             </mat-form-field>
         </div>
-        
+
         <h2>Evento que motivou o comunicado</h2>
+
         <div class="flex">
+
             <mat-form-field class="f2">
+
                 <mat-label>Evento / Motivo</mat-label>
-                <mat-select matInput formControlName="evento" (ngChange)="getMesmaDataOutroMotivo()">
+
+                <mat-select matInput
+                    formControlName="evento" 
+                    (ngChange)="getMesmaDataOutroMotivo()">
+
                     <mat-option ngDefaultControl></mat-option>
-                     <mat-option [value]="1">Chuva Excessiva</mat-option>
-                     <mat-option [value]="2">Geada</mat-option>
-                     <mat-option [value]="3">Granizo</mat-option>
-                     <mat-option [value]="4">Seca</mat-option>
-                     <mat-option [value]="5">Vendaval</mat-option>
-                     <mat-option [value]="6">Raio</mat-option>
+                    <mat-option [value]="1">Chuva Excessiva</mat-option>
+                    <mat-option [value]="2">Geada</mat-option>
+                    <mat-option [value]="3">Granizo</mat-option>
+                    <mat-option [value]="4">Seca</mat-option>
+                    <mat-option [value]="5">Vendaval</mat-option>
+                    <mat-option [value]="6">Raio</mat-option>
                 </mat-select>
-                <mat-error *ngIf="comunicadoForm.get('evento')?.invalid">Campo obrigatório</mat-error>
+
+                <mat-error *ngIf="comunicadoForm.get('evento')?.invalid">
+                    Campo obrigatório
+                </mat-error>
+
             </mat-form-field>
 
             <div *ngIf="eventosDivirgentes.length > 0" class="danger">
-                Atenção: Existem registros de <b>{{eventosDivirgentes.length}} eventos</b> 
+                Atenção: Existem registros de <b>{{eventosDivirgentes.length}} eventos</b>
                 diferentes no mesmo dia em uma distância inferior a 10 km.
+
                 <ul>
-                    <li *ngFor="let com of eventosDivirgentes"><small><b>Doc#{{com.id}}</b>, {{com.evento_descr}} ~ {{com.distancia}}</small></li>
+                    <li *ngFor="let com of eventosDivirgentes">
+                        <small>
+                            <b>Doc#{{com.id}}</b>, {{com.evento_descr}} ~
+                            {{com.distancia}}
+                        </small>
+                    </li>
                 </ul>
+
             </div>
         </div>
 
@@ -63,53 +110,104 @@
 
         <div class="flex">
             <mat-form-field>
+
                 <mat-label>Data da Colheita</mat-label>
-                <input matInput formControlName="lavoura_data_colheita" placeholder="--/--/----" [matDatepicker]="ldc">
+
+                <input matInput
+                    formControlName="lavoura_data_colheita"
+                    placeholder="--/--/----"
+                    [matDatepicker]="ldc">
+
                 <mat-datepicker-toggle matSuffix [for]="ldc"></mat-datepicker-toggle>
+
                 <mat-datepicker #ldc></mat-datepicker>
+
             </mat-form-field>
 
             <mat-form-field>
+
                 <mat-label>Latitude</mat-label>
-                <input matInput formControlName="lavoura_lat" maxlength="10" (blur)="getMesmaDataOutroMotivo()" aria-label="lavoura latitude">
+
+                <input matInput
+                    formControlName="lavoura_lat"
+                    maxlength="10"
+                    (blur)="getMesmaDataOutroMotivo()"
+                    aria-label="lavoura latitude">
+
                 <mat-error *ngIf="comunicadoForm.controls.lavoura_lat.invalid">
-                    <span *ngIf="comunicadoForm.controls.lavoura_lat.errors.required">Latitude da lavoura é obrigatória</span>
-                    <span *ngIf="comunicadoForm.controls.lavoura_lat.errors.min || comunicadoForm.controls.lavoura_lat.errors.max">
-                        Informe um valor decimal entre -90 e 90</span>
+
+                    <span *ngIf="comunicadoForm.controls.lavoura_lat.errors.required">
+                        Latitude da lavoura é obrigatória
+                    </span>
+
+                    <span *ngIf="comunicadoForm.controls.lavoura_lat.errors.min 
+                        || comunicadoForm.controls.lavoura_lat.errors.max">
+                        Informe um valor decimal entre -90 e 90
+                    </span>
+
                 </mat-error>
+
             </mat-form-field>
-            
+
             <mat-form-field>
+
                 <mat-label>Longitude</mat-label>
-                <input matInput formControlName="lavoura_lon" maxlength="11" (blur)="getMesmaDataOutroMotivo()" aria-label="lavoura-longitude">
+
+                <input matInput aria-label="lavoura-longitude"
+                    formControlName="lavoura_lon" 
+                    (blur)="getMesmaDataOutroMotivo()"
+                    maxlength="11" >
+
                 <mat-error *ngIf="comunicadoForm.controls.lavoura_lon.invalid">
-                    <span *ngIf="comunicadoForm.controls.lavoura_lon.errors.required">Longitude da lavoura é obrigatória</span>
-                    <span *ngIf="comunicadoForm.controls.lavoura_lon.errors.min || comunicadoForm.controls.lavoura_lon.errors.max">
-                        Informe um valor decimal entre -180 e 180</span>
+
+                    <span *ngIf="comunicadoForm.controls.lavoura_lon.errors.required">
+                        Longitude da lavoura é obrigatória
+                    </span>
+
+                    <span *ngIf="comunicadoForm.controls.lavoura_lon.errors.min 
+                        || comunicadoForm.controls.lavoura_lon.errors.max">
+                        Informe um valor decimal entre -180 e 180
+                    </span>
+
                 </mat-error>
+
             </mat-form-field>
-        
+
         </div>
         <div class="flex">
 
             <mat-form-field>
+
                 <mat-label>Lavoura Tipo</mat-label>
-                <mat-select matInput formControlName="lavoura_tipo">
+
+                <mat-select matInput
+                    formControlName="lavoura_tipo">
+
                     <mat-option *ngFor="let tipo of tiposDeLavoura" [value]="tipo.id">
                         {{tipo.descricao}}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="comunicadoForm.controls.lavoura_tipo.invalid">Escolha o tipo da lavoura</mat-error>
+
+                <mat-error *ngIf="comunicadoForm.controls.lavoura_tipo.invalid">
+                    Escolha o tipo da lavoura
+                </mat-error>
+
             </mat-form-field>
-           
+
         </div>
         <div class="flex space-between">
-            <button mat-raised-button routerLink="comunicados/" color="accent">Sair sem salvar</button>
+
+            <button mat-raised-button color="accent"
+                routerLink="comunicados/"
+                type="button"> Sair sem salvar
+            </button>
+
             <button mat-raised-button color="primary"
                 [disabled]="comunicadoForm.invalid && !cansubmit"
-                type="button"
-                (click)="onSubmit()">SALVAR
+                (click)="onSubmit()"
+                type="button"> SALVAR
             </button>
+
         </div>
     </form>
 </div>
