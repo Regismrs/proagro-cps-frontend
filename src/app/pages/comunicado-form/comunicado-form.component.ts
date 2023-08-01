@@ -14,7 +14,7 @@ export class ComunicadoFormComponent implements OnInit {
 
   public options: FormGroup
   public comunicadoForm: any
-  public cansubmit = false
+  public submitted = false
   public eventosDivirgentes: Array<any> = []
   public tiposDeLavoura: Array<any> = [
     { id: 1, descricao: "arroz" },
@@ -51,6 +51,7 @@ export class ComunicadoFormComponent implements OnInit {
         next: res => {
           console.log(res)
           this.comunicadoForm.patchValue(res)
+          this.getMesmaDataOutroMotivo()
         },
         error: e => console.warn(e)
       })
@@ -61,6 +62,11 @@ export class ComunicadoFormComponent implements OnInit {
     console.warn('submitteDDDD!!!!')
     const id = this.comunicadoForm.get('id')?.value
     const body = JSON.stringify(this.comunicadoForm.value)
+    if (this.comunicadoForm.invalid)
+    {
+      this.comunicadoForm.markAllAsTouched()
+      return;
+    }
 
     if (id !== null && id > 0) {
       this.updateComunicado(id, body)
@@ -110,7 +116,6 @@ export class ComunicadoFormComponent implements OnInit {
         next: (res) => {
           console.warn('ok go fetch')
           this.fetchDivirgentes(lavoura_lat, lavoura_lon, res.results)
-          this.cansubmit = true
         },
         error: (e) => console.warn(e)
       })
