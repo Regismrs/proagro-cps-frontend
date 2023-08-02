@@ -2,7 +2,7 @@
   <div class="flex bg-white" style="padding:1em 1em 0">
     <mat-form-field appearance="outline">
       <mat-label>Filtrar</mat-label>
-      <input matInput placeholder="Procurar na tabela" #cpf_search (keyup)="applyFilter(cpf_search.value)">
+      <input matInput placeholder="Procurar nessa página" #cpf_search (keyup)="applyFilter(cpf_search.value)">
     </mat-form-field>
 
     <app-comunicados-filtro (filtroAlterado)="buscarComunicados($event)" [isLoading]="isLoading"></app-comunicados-filtro>
