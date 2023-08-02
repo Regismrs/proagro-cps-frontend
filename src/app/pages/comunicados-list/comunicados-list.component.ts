@@ -88,11 +88,9 @@ export class ComunicadosListComponent {
         this.comunicados = res.results
         this.comunicadosCount = res.count
         this.dataSource = new MatTableDataSource( this.comunicados )
-        console.info(res)
         this.isLoading = false
       },
       error: (e) => {
-        console.warn(e)
         this.notifyErrors(e)
         this.isLoading = false
       }

@@ -44,12 +44,10 @@ export class ComunicadoFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.info('form init')
     if (history.state.id)
     {
       this.comunicadoService.getComunicado(history.state.id).subscribe({
         next: res => {
-          console.log(res)
           this.comunicadoForm.patchValue(res)
           this.getMesmaDataOutroMotivo()
         },
@@ -59,7 +57,6 @@ export class ComunicadoFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn('submitteDDDD!!!!')
     const id = this.comunicadoForm.get('id')?.value
     const body = JSON.stringify(this.comunicadoForm.value)
     if (this.comunicadoForm.invalid)
@@ -79,7 +76,6 @@ export class ComunicadoFormComponent implements OnInit {
   addComunicado(body: string): void {
     this.comunicadoService.addComunicado(body).subscribe({
       next: r => {
-        console.info("RES = " + JSON.stringify(r))
         this.router.navigate(['comunicado/'], { state: { notify: "Registro adicionado com sucesso." } })
       },
       error: e => console.warn("ERRO = " + JSON.stringify(e))
@@ -89,7 +85,6 @@ export class ComunicadoFormComponent implements OnInit {
   updateComunicado(id: number, body: string): void {
     this.comunicadoService.updateComunicado(id, body).subscribe({
       next: res => {
-        console.log(res)
         this.router.navigate(['comunicado/'], { state: { notify: "Registro atualizado com sucesso." } })
       },
       error: e => console.log(e.error)
@@ -110,11 +105,9 @@ export class ComunicadoFormComponent implements OnInit {
       lavoura_data_colheita = lavoura_data_colheita.toISOString()
     }
 
-    console.warn('Digirgentes...')
     this.comunicadoService.getComunicadosDivergentes(
       lavoura_data_colheita, evento, id).subscribe({
         next: (res) => {
-          console.warn('ok go fetch')
           this.fetchDivirgentes(lavoura_lat, lavoura_lon, res.results)
         },
         error: (e) => console.warn(e)
@@ -125,12 +118,10 @@ export class ComunicadoFormComponent implements OnInit {
   private fetchDivirgentes(latA: number, lonA: number, comunicados: Array<any>): void {
     let distancia = 0
     this.eventosDivirgentes = []
-    console.warn(comunicados[0])
     for (let c of comunicados) {
       distancia = haversine(latA, lonA, c.lavoura_lat, c.lavoura_lon)
       if (distancia < 10.0) {
         this.eventosDivirgentes.push({ ...c, distancia: distanceToString(distancia) })
-        console.warn(this.eventosDivirgentes)
       }
     }
   }

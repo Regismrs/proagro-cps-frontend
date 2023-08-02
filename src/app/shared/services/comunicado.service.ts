@@ -50,7 +50,6 @@ export class ComunicadoService {
 
   getComunicadosFiltroDtCadastro(gte: string, lte: string, limit: number, offset: number) {
     const url = `${this.API_URL}/comunicados/?data_cadastro__gte=${gte}&data_cadastro__lte=${lte}&limit=${limit}&offset=${offset}&ordering=inserted_at,nome`
-    console.log(url)
     return this.http.get<any>(url, this.httpOptions)
   }
 

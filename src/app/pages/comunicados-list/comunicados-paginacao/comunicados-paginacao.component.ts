@@ -25,7 +25,6 @@ export class ComunicadosPaginacaoComponent implements AfterViewInit, OnChanges{
   }
 
   onPageChange(event:any) {
-    console.info("PAGE!!")
     const offset = event.pageIndex * event.pageSize
     this.pageChange.emit({limit: event.pageSize, offset: offset})
   }

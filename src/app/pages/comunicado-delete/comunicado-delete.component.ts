@@ -15,7 +15,6 @@ export class ComunicadoDeleteComponent {
     if (!history.state.id) this.router.navigate([''])
     this.comunicadoService.getComunicado(history.state.id).subscribe({
       next: r => {
-        console.log(r)
         this.comunicado = r
       }
     })
@@ -24,7 +23,6 @@ export class ComunicadoDeleteComponent {
   confirmaExclusao() {
     this.comunicadoService.deleteComunicado(this.comunicado.id).subscribe({
       next: res => {
-        console.log(res)
         this.router.navigate(['comunicado/'], { state: { notify: "Registro excluído com sucesso." } })
       },
       error: e => console.warn(e)
