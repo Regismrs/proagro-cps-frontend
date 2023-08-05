@@ -55,32 +55,31 @@ export class ComunicadosListComponent {
 
     this.filtro = {...this.filtro, ...event}
 
-    if (this.filtro.filtro == "dtcadastro")
+    switch(this.filtro.filtro)
     {
-      buscaObservable = this.comunicadosService
-        .getComunicadosFiltroDtCadastro(
-          this.filtro.dataMinima, 
-          this.filtro.dataMaxima, 
+      case "dtcadastro":
+        buscaObservable = this.comunicadosService
+          .getComunicadosFiltroDtCadastro(
+            this.filtro.dataMinima, 
+            this.filtro.dataMaxima, 
+            this.filtro.limit, 
+            this.filtro.offset
+          )
+        break;
+      case "dtcolheita":
+        buscaObservable = this.comunicadosService
+          .getComunicadosFiltroDtColheita(
+            this.filtro.dataMinima, 
+            this.filtro.dataMaxima, 
+            this.filtro.limit, 
+            this.filtro.offset
+          )
+        break;
+      default:
+        buscaObservable = this.comunicadosService.getComunicados(
           this.filtro.limit, 
           this.filtro.offset
         )
-    }
-    else if (this.filtro.filtro == "dtcolheita")
-    {
-      buscaObservable = this.comunicadosService
-        .getComunicadosFiltroDtColheita(
-          this.filtro.dataMinima, 
-          this.filtro.dataMaxima, 
-          this.filtro.limit, 
-          this.filtro.offset
-        )
-    }
-    else
-    {
-      buscaObservable = this.comunicadosService.getComunicados(
-        this.filtro.limit, 
-        this.filtro.offset
-      )
     }
 
     buscaObservable.subscribe({
