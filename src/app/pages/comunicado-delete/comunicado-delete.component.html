@@ -1,7 +1,7 @@
 <app-header></app-header>
 
-<div class="flex center">
-    <div class="mat-elevation-z8 w60 bg-white p2" *ngIf="comunicado != null">
+<div class="flex center container bg-white mat-elevation-z8">
+    <div *ngIf="comunicado != null">
 
         <h2>
             Documento código <b>{{comunicado.id}}</b> criado em 
@@ -19,8 +19,7 @@
                 para o dia <b>{{comunicado.lavoura_data_colheita | date: 'dd/MM/yyyy'}}</b>.
             </h2>
             <h2>
-                Lembre-se que a exclusão do registro no sistema é um processo 
-                irreversível sendo os dados eliminados de forma definitiva.
+                Lembre-se que após a exclusão os dados do registro serão eliminados de forma definitiva.
             </h2>
         </div>
 
