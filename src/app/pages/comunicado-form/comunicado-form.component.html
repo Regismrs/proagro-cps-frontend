@@ -41,7 +41,7 @@
                 </mat-error>
             
             </mat-form-field>
-            <mat-form-field class="f3">
+            <mat-form-field>
 
                 <mat-label>Nome Completo</mat-label>
 
@@ -54,7 +54,7 @@
                 </mat-error>
             
             </mat-form-field>
-            <mat-form-field class="f4">
+            <mat-form-field>
 
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" aria-label="email">
@@ -65,9 +65,9 @@
 
         <h2>Evento que motivou o comunicado</h2>
 
-        <div class="flex">
+        <div class="flex wrap">
 
-            <mat-form-field class="f2">
+            <mat-form-field>
 
                 <mat-label>Evento / Motivo</mat-label>
 
@@ -90,7 +90,7 @@
 
             </mat-form-field>
 
-            <div *ngIf="eventosDivirgentes.length > 0" class="danger">
+            <div *ngIf="eventosDivirgentes.length > 0" class="danger matFormField">
                 Atenção: Existem registros de <b>{{eventosDivirgentes.length}} eventos</b>
                 diferentes no mesmo dia em uma distância inferior a 10 km.
 
@@ -108,7 +108,7 @@
 
         <h2>Lavoura</h2>
 
-        <div class="flex">
+        <div class="flex wrap">
             <mat-form-field>
 
                 <mat-label>Data da Colheita</mat-label>

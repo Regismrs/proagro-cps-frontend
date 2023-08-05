@@ -16,22 +16,6 @@ form {
     margin: .5em;
 }
 
-.f20 {
-    flex: 1 1 25%;
-}
-
-.f2 {
-    flex: 1 0 50%;
-}
-
-.f3 {
-    flex: 1 1 50%;
-}
-
-.f4 {
-    flex: 1 1 100%;
-}
-
 .container {
     background: var(--cor-branco);
     padding: 2em;
@@ -56,4 +40,9 @@ form {
             background: rgba(255, 255, 255, .5);
         }
     }
+}
+
+mat-form-field,
+.formFieldBehavior {
+    flex: 1 0 400px;
 }
