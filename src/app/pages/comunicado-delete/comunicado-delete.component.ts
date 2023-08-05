@@ -23,14 +23,14 @@ export class ComunicadoDeleteComponent {
   confirmaExclusao() {
     this.comunicadoService.deleteComunicado(this.comunicado.id).subscribe({
       next: res => {
-        this.router.navigate(['comunicado/'], { state: { notify: "Registro excluído com sucesso." } })
+        this.router.navigate(['comunicados/'], { state: { notify: "Registro excluído com sucesso." } })
       },
       error: e => console.warn(e)
     })
   }
 
   cancelaExclusao() {
-    this.router.navigate(['comunicado/'])
+    this.router.navigate(['comunicados/'])
   }
 
 }
