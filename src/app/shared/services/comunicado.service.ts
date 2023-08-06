@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { FiltroComunicado } from '../interfaces/filtro';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +32,8 @@ export class ComunicadoService {
     return this.http.get<any>(`${this.API_URL}/comunicado/${id}`, this.httpOptions)
   }
 
-  getComunicados(limit:number, offset:number): Observable<any> {
-    return this.http.get<any>(`${this.API_URL}/comunicados/?limit=${limit}&offset=${offset}&ordering=nome`, this.httpOptions)
+  getComunicados(filtro:FiltroComunicado): Observable<any> {
+    return this.http.get<any>(`${this.API_URL}/comunicados/?limit=${filtro.limit}&offset=${filtro.offset}&ordering=nome`, this.httpOptions)
   }
 
   getComunicadosDivergentes(lavoura_data_colheita: Date, evento: number, id: number = 0): Observable<any> {
@@ -43,12 +44,14 @@ export class ComunicadoService {
       this.httpOptions)
   }
 
-  getComunicadosFiltroDtColheita(gte: string, lte: string, limit: number, offset: number) {
+  getComunicadosFiltroDtColheita(filtro:FiltroComunicado) {
+    const {dataMinima:gte, dataMaxima:lte, limit, offset} = filtro
     const url = `${this.API_URL}/comunicados/?data_colheita__gte=${gte}&data_colheita__lte=${lte}&limit=${limit}&offset=${offset}&ordering=lavoura_data_colheita,nome`
     return this.http.get<any>(url, this.httpOptions)
   }
 
-  getComunicadosFiltroDtCadastro(gte: string, lte: string, limit: number, offset: number) {
+  getComunicadosFiltroDtCadastro(filtro:FiltroComunicado) {
+    const {dataMinima:gte, dataMaxima:lte, limit, offset} = filtro
     const url = `${this.API_URL}/comunicados/?data_cadastro__gte=${gte}&data_cadastro__lte=${lte}&limit=${limit}&offset=${offset}&ordering=inserted_at,nome`
     return this.http.get<any>(url, this.httpOptions)
   }

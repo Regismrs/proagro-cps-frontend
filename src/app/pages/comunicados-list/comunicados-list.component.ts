@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { FiltroComunicado } from '../../shared/interfaces/filtro';
 
 @Component({
   selector: 'app-comunicados-list',
@@ -22,7 +23,7 @@ export class ComunicadosListComponent {
   public dataSource:any
 
   public isLoading:boolean = false
-  private filtro:{filtro:string, dataMinima:string, dataMaxima:string, limit:number, offset:number} = {
+  private filtro:FiltroComunicado = {
     dataMinima: "1900-01-01",
     dataMaxima: "2999-12-31",
     filtro: '',
@@ -59,27 +60,15 @@ export class ComunicadosListComponent {
     {
       case "dtcadastro":
         buscaObservable = this.comunicadosService
-          .getComunicadosFiltroDtCadastro(
-            this.filtro.dataMinima, 
-            this.filtro.dataMaxima, 
-            this.filtro.limit, 
-            this.filtro.offset
-          )
+          .getComunicadosFiltroDtCadastro(this.filtro)
         break;
       case "dtcolheita":
         buscaObservable = this.comunicadosService
-          .getComunicadosFiltroDtColheita(
-            this.filtro.dataMinima, 
-            this.filtro.dataMaxima, 
-            this.filtro.limit, 
-            this.filtro.offset
-          )
+          .getComunicadosFiltroDtColheita(this.filtro)
         break;
       default:
-        buscaObservable = this.comunicadosService.getComunicados(
-          this.filtro.limit, 
-          this.filtro.offset
-        )
+        buscaObservable = this.comunicadosService
+          .getComunicados(this.filtro)
     }
 
     buscaObservable.subscribe({
