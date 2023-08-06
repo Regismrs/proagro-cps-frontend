@@ -3,8 +3,12 @@ import {AbstractControl, ValidatorFn} from '@angular/forms';
 export function validatorCPF(): ValidatorFn {  
     return (control: AbstractControl): { [key: string]: any } | null => {
       const cpf = String(control.value).replace(/\D/g, '')
-      if (cpf.length != 11) return {length: 'CPF deve ter 11 digitos'}
-      if (!validaCPF(control.value)) return {cpf: 'CPF inválido'}
+      if (cpf.length != 11) {
+        return {length: 'CPF deve ter 11 digitos'}
+      }
+      else if (!validaCPF(control.value)) {
+        return {cpf: 'CPF inválido'}
+      }
       return null
     }
 }
