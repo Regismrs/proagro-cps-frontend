@@ -1,5 +1,4 @@
 .table-wrapper {
-    border: 1px solid red;
     overflow-x: scroll;
 
     mat-table {
@@ -12,11 +11,21 @@
 
             &:first-child,
             &:last-child {
-                background-color: #fc0;
                 flex: 1;
                 min-width: 100px;
                 max-width: 100px;
             }
         }
+    }
+}
+
+.search-wrapper {
+    padding:1em 1em 0;
+}
+
+@media (width < 900px) {
+    .search-wrapper {
+        flex-direction: column;
+        padding: 5px 5px 0;
     }
 }
