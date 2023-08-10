@@ -1,0 +1,22 @@
+.table-wrapper {
+    border: 1px solid red;
+    overflow-x: scroll;
+
+    mat-table {
+
+        mat-header-cell,
+        mat-cell {
+            white-space: nowrap;
+            flex: 1 0 160px;
+            min-width: auto;
+
+            &:first-child,
+            &:last-child {
+                background-color: #fc0;
+                flex: 1;
+                min-width: 100px;
+                max-width: 100px;
+            }
+        }
+    }
+}
