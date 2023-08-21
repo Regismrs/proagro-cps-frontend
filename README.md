@@ -37,7 +37,7 @@ Execute `ng build` no terminal para compilar o projeto. Os arquivos (index.html,
 Os dados da aplicação frontend serão provenientes da REST API AgroCPS. O funcionamento da API pode ser consultado na documentação oficial disponibilizada em [https://agrocps.docs.apiary.io/#](https://agrocps.docs.apiary.io/#).
 ###### TOKEN
 A garantia do acesso aos dados da API do lado servidor ocorre através da verificação do **Token** informado pelo usuário no header de suas requisições. O token é fornecido pela equipe responsável pela API. Para mais detalhes consulte a documentação da API.
-# 5. Recursos
+# 4. Recursos
 + ### Validação de Formulários no Frontend
 Implementamos validações de formulários no frontend utilizando os recursos nativos de validação do Angular. Essa abordagem foi adotada para fornecer uma experiência de uso mais amigável e mitigar erros nos dados inseridos pelos usuários.
 
@@ -83,7 +83,7 @@ Ao adotar essa abordagem, os módulos do projeto são divididos em partes menore
 Além disso, o lazy loading contribui para a escalabilidade do projeto, permitindo que futuras expansões e adições de recursos sejam facilmente incorporadas, sem afetar o desempenho das áreas já existentes.
 
 Aproveite o benefício do lazy loading para uma experiência de usuário mais ágil e uma arquitetura modular que facilita o desenvolvimento contínuo do projeto.
-# 6. Como contribuir
+# 5. Como contribuir
 * Faça um fork deste repositório
 * Crie uma nova branch: git checkout -b minha-feature
 * Faça suas alterações e faça commit: git commit -m "Minha nova feature"
